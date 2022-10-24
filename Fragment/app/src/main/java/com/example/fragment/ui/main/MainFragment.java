@@ -29,8 +29,21 @@ public class MainFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
-//    @Override
-//    public void onViewCreated(V)
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        view.findViewById(R.id.next).setOnClickListener(v -> {
+            onClick();
+        });
+    }
+
+    private void onClick() {
+        Fragment1 fragment1 = Fragment1.newInstance();
+        fragment1.setTargetFragment(this, 0);
+        getFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.container, fragment1)
+                .commit();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
